@@ -1,0 +1,50 @@
+1.Jalankan MySQL server di xampp
+2.Masuk kedalam folder bin mysql : cd c:/xampp/mysql/bin
+3.Jalankan client server : MYSQL -u root
+
+4.Create database tugas;
+5.use tugas;
+
+6.CREATE TABLE tugas_populasi (
+    -> kota varchar (50),
+    -> kec tinyint(3) unsigned,
+    -> kel smallint(5) unsigned,
+    -> luas decimal(6,2),
+    -> penduduk int(10) unsigned);
+7.INSERT INTO tugas_populasi VALUES (
+    -> "Jakarta", 44, 267, 664.01, 9988495),
+    -> ("Surabaya", 31, 154, 350.54, 2805906),
+    -> ("Medan", 21, 151, 265.00, 2465469),
+    -> ("Bekasi", 12, 56, 206.61, 2381053), (
+    -> "Bandung", 12,56,167.67,2339463), (
+    -> "Makassar", 14, 143, 199.26, 1651146), (
+    -> "Depok", 11, 63, 200.29, 1631951), (
+    -> "Semarang", 16, 177, 373.78, 1621384), (
+    -> "Tangerang", 13, 104, 153.93, 1566190), (
+    -> "Palembang", 14, 107, 369.22, 1548064);
+8.SELECT * FROM tugas_populasi;
+9.SELECT kota as `Nama Kota`, kec as `Jumlah Kecamatan`, kel as `Jumlah Kelurahan` FROM tugas_populasi;
+10.SELECT * FROM tugas_populasi ORDER BY kec desc;
+11.SELECT * FROM tugas_populasi
+    -> WHERE kel BETWEEN 63 and 151
+    -> ORDER BY kel asc;
+12.SELECT * FROM tugas_populasi
+    -> WHERE kota LIKE "Depok%";
+
+13.CREATE TABLE tugas_daftar_provinsi (
+    -> prov varchar (50),
+    -> ibukota varchar (50),
+    -> luas int(11),
+    -> tanggal_diresmikan date);
+14.INSERT INTO tugas_daftar_provinsi values
+    -> ("Sumatera Utara", "Medan", 72981,19561129),
+    -> ("Sumatera Barat", "Padang", 42297,19570809),
+    -> ("Jawa Barat","Bandung", 35245,19500704),
+    -> ("Jawa Tengah","Semarang", 33987, 19500704),
+    -> ("Sulawesi Selatan","Makassar",46116,19601213),
+    -> ("Bali","Denpasar",5561,19580814),
+    -> ("Sumatera Selatan","Palembang",85679,19500814),
+    -> ("Papua Barat", "Manokwari", 114566,19991004);
+15.SELECT prov,kota,penduduk FROM tugas_populasi
+    -> INNER JOIN tugas_daftar_provinsi
+    -> ON tugas_populasi.kota = tugas_daftar_provinsi.ibukota;
